@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кабінет Студента - Налаштування Профілю</title>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-dark: #2F2F2F; 
+            --color-light: #F2EDE7; 
+            --color-text-dim: #A0A0A0;
+            --color-sidebar-bg: #4F735C; 
+            --color-main-bg: rgba(47, 47, 47, 0.9); 
+            --color-accent: #6CA082; 
+            --color-border: rgba(255, 255, 255, 0.1); 
+            --color-input-bg: #444; 
+            --color-action-btn-main: #385642; 
+            --color-action-btn-hover: #2A4032; 
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Ubuntu', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: url('images/figure.png') no-repeat center center fixed; 
+            background-size: cover;
+            background-color: var(--color-dark);
+            color: var(--color-light);
+            min-height: 100vh;
+            overflow-y: hidden;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 3rem;
+            background-color: var(--color-dark); 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4); 
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .logo {
+            font-size: 2.1rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        /* КФС - ЗЕЛЕНИЙ КОЛІР */
+        .logo-notes {
+            color: var(--color-sidebar-bg); 
+            background-clip: text;
+        }
+
+        .logo-app {
+            color: var(--color-light);
+        }
+        
+        .user-avatar-circle {
+            width: 44px; 
+            height: 44px;
+            border-radius: 50%; 
+            background-color: var(--color-accent); 
+            color: var(--color-dark); 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.1rem; 
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            border: none;
+        }
+
+        .content-wrapper {
+            display: flex;
+            width: 100%;
+            min-height: calc(100vh - 72px); 
+        }
+
+        .sidebar {
+            width: 280px; 
+            background-color: var(--color-sidebar-bg); 
+            flex-shrink: 0;
+            box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .sidebar-header {
+            padding: 25px 20px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-light);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+            text-align: left;
+        }
+
+        .nav-list {
+            list-style: none;
+        }
+        
+        .nav-list a {
+            display: block;
+            padding: 15px 20px;
+            color: var(--color-light);
+            text-decoration: none;
+            font-weight: 500;
+            border-left: 3px solid transparent;
+        }
+        
+        .nav-list a.active {
+            background-color: rgba(0, 0, 0, 0.3); 
+            color: var(--color-light);
+            font-weight: 700;
+        }
+
+        .main-settings {
+            flex-grow: 1;
+            padding: 30px 50px;
+            background-color: var(--color-main-bg); 
+            box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3);
+            overflow-y: auto; /* Дозволяємо скрол тільки тут */
+        }
+        
+        .settings-header {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-light);
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--color-accent);
+        }
+
+        .form-section {
+            background-color: rgba(47, 47, 47, 0.85); 
+            padding: 20px;
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            color: var(--color-accent);
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+        
+        label {
+            font-size: 0.9rem;
+            color: var(--color-text-dim);
+            margin-bottom: 5px;
+        }
+        
+        input[type="text"],
+        input[type="password"] {
+            padding: 10px;
+            background-color: var(--color-input-bg);
+            border: 1px solid var(--color-border);
+            color: var(--color-light);
+        }
+
+        .user-avatar-display {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: var(--color-accent);
+            color: var(--color-dark);
+            border: 3px solid var(--color-accent); 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .btn-save {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: var(--color-action-btn-main);
+            color: var(--color-light);
+            border: 1px solid var(--color-action-btn-main);
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .btn-save:hover {
+            background-color: var(--color-action-btn-hover);
+            border-color: var(--color-action-btn-hover);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        @media (max-width: 900px) {
+            .content-wrapper {
+                flex-direction: column;
+                min-height: auto;
+            }
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid var(--color-border);
+            }
+            .sidebar-header {
+                display: none;
+            }
+            .nav-list {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .nav-list a {
+                border-left: none;
+                padding: 10px 15px;
+            }
+            .nav-list a.active {
+                border-bottom: 3px solid var(--color-light);
+                border-left-color: transparent;
+            }
+            .main-settings {
+                padding: 20px 15px;
+            }
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="#" class="logo">
+            <span class="logo-notes">КФС</span>
+            <span class="logo-app">КУРС</span>
+        </a>
+        
+        <a href="labs.html" class="user-avatar-circle" title="До Лабораторних">
+            ІМ
+        </a>
+    </nav>
+
+    <div class="content-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-header">Мій Профіль</div>
+            <nav class="nav-list">
+                <a href="#" class="active" data-section="profile">Редагувати профіль</a>
+                <a href="#" data-section="account">Налаштування акаунту</a>
+            </nav>
+        </aside>
+
+        <main class="main-settings">
+            
+            <div id="profile-content" class="content-area">
+                <h2 class="settings-header">Редагування Профілю</h2>
+
+                <section class="form-section">
+                    <h3 class="section-title">Фото Профілю</h3>
+                    <div class="avatar-area">
+                        <input type="file" id="avatar-upload-input" name="avatar" accept="image/*" style="display:none;">
+                        
+                        <div class="user-avatar-display" title="Натисніть для зміни фото" onclick="document.getElementById('avatar-upload-input').click()">
+                            ІМ
+                        </div>
+                    </div>
+                </section>
+
+                <section class="form-section">
+                    <h3 class="section-title">Основні Дані (ПІБ)</h3>
+                    <form>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="first-name">Ім'я</label>
+                                <input type="text" id="first-name" placeholder="Введіть ім'я" value="Іван">
+                            </div>
+                            <div class="form-group">
+                                <label for="last-name">Прізвище</label>
+                                <input type="text" id="last-name" placeholder="Введіть прізвище" value="Іванов">
+                            </div>
+                            <div class="form-group">
+                                <label for="middle-name">По батькові</label>
+                                <input type="text" id="middle-name" placeholder="Введіть по батькові">
+                            </div>
+                            <div class="form-group"></div> 
+                        </div>
+                        
+                        <button type="submit" class="btn-save">Зберегти Профіль</button>
+                    </form>
+                </section>
+            </div>
+
+
+            <div id="account-content" class="content-area" style="display: none;">
+                <h2 class="settings-header">Налаштування Акаунту</h2>
+
+                <section class="form-section">
+                    <h3 class="section-title">Зміна Пароля</h3>
+                    <form>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="old-password">Поточний пароль</label>
+                                <input type="password" id="old-password" placeholder="Введіть поточний пароль">
+                            </div>
+                            <div class="form-group">
+                                <label for="new-password">Новий пароль</label>
+                                <input type="password" id="new-password" placeholder="Введіть новий пароль">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm-password">Підтвердження пароля</label>
+                                <input type="password" id="confirm-password" placeholder="Повторіть новий пароль">
+                            </div>
+                            <div class="form-group"></div>
+                        </div>
+                        <button type="submit" class="btn-save">Змінити Пароль</button>
+                    </form>
+                </section>
+            </div>
+        </main>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-list a');
+            const profileContent = document.getElementById('profile-content');
+            const accountContent = document.getElementById('account-content');
+
+            function showSection(targetSection) {
+                profileContent.style.display = (targetSection === 'profile') ? 'block' : 'none';
+                accountContent.style.display = (targetSection === 'account') ? 'block' : 'none';
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    navLinks.forEach(nav => nav.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const target = this.getAttribute('data-section');
+                    showSection(target);
+                });
+            });
+
+            showSection('profile'); 
+        });
+    </script>
+</body>
+</html>

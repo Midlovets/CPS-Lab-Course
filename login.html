@@ -23,29 +23,35 @@
 <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
 <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
 
-    <div class="signin">
-      <div class="content">
+<div class="signin">
+    <div class="content">
         <h2>Вхід</h2>
-        <div class="form">
-          <div class="inputBox">
-            <input type="text" required>
-            <i>E-mail</i>
-          </div>
-          <div class="inputBox">
-            <input type="password" required>
-            <i>Пароль</i>
-          </div>
-          <div class="links">
-            <a href="#">Не маєте аккаунту?</a>
-            <a href="register.html">Зареєструватися</a>
-          </div>
-          <div class="inputBox">
-            <input type="submit" value="Увійти">
-          </div>
-        </div>
-      </div>
+        <form class="form" id="loginForm" autocomplete="off" onsubmit="return false;">
+            <div class="inputBox">
+                <input type="text" required>
+                <i>E-mail</i>
+            </div>
+            <div class="inputBox">
+                <input type="password" required>
+                <i>Пароль</i>
+            </div>
+            <div class="links">
+                <a href="#">Не маєте аккаунту?</a>
+                <a href="register.html">Зареєструватися</a>
+            </div>
+            <div class="inputBox">
+                <input type="submit" value="Увійти" id="loginBtn">
+            </div>
+        </form>
     </div>
-  </section>
-  
-</body>
-</html>
+</div>
+
+<!-- Toasts -->
+<div class="toast green">
+    <p>Товар успішно додано до кошику.</p>
+    <button class="icon">
+        <img src="/imgages/close_white.svg" alt="">
+    </button>
+</div>
+</section>
+
